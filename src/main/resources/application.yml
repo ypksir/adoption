@@ -1,0 +1,38 @@
+#默认使用配置
+spring:
+  profiles:
+    active: dev
+
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: HTML5
+
+server:
+  port: 8090
+  address: 0.0.0.0
+
+
+logging:
+  level:
+    cn.spicis.adoption: DEBUG
+
+#公共配置与profiles选择无关
+mybatis:
+  typeAliasesPackage: cn.spicis.adoption.entity
+  mapperLocations: classpath:mapper/*.xml
+
+---  #分隔线不能少
+
+#开发配置
+spring:
+  profiles: dev
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/test       #数据库地址+数据库名字(自定义)
+    username: root                              #帐号(自定义)
+    password: Root_Password                              #密码(自定义)
+    driver-class-name: com.mysql.cj.jdbc.Driver    #驱动

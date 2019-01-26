@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spicis.adoption.dao.CatApplicationsMapper">
+  <resultMap id="BaseResultMap" type="cn.spicis.adoption.domain.CatApplications">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="export_falg" jdbcType="INTEGER" property="exportFalg" />
+    <result column="verify_flag" jdbcType="INTEGER" property="verifyFlag" />
+    <result column="cat_color" jdbcType="VARCHAR" property="catColor" />
+    <result column="cat_age" jdbcType="INTEGER" property="catAge" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="master_age" jdbcType="INTEGER" property="masterAge" />
+    <result column="master_sex" jdbcType="INTEGER" property="masterSex" />
+    <result column="married" jdbcType="INTEGER" property="married" />
+    <result column="salary" jdbcType="INTEGER" property="salary" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="housing" jdbcType="INTEGER" property="housing" />
+    <result column="tenement" jdbcType="INTEGER" property="tenement" />
+    <result column="hometown" jdbcType="VARCHAR" property="hometown" />
+    <result column="cotenant" jdbcType="INTEGER" property="cotenant" />
+    <result column="cotenant_agreement" jdbcType="INTEGER" property="cotenantAgreement" />
+    <result column="pets" jdbcType="VARCHAR" property="pets" />
+    <result column="experience" jdbcType="VARCHAR" property="experience" />
+    <result column="window" jdbcType="INTEGER" property="window" />
+    <result column="food" jdbcType="VARCHAR" property="food" />
+    <result column="agree_protocol" jdbcType="INTEGER" property="agreeProtocol" />
+    <result column="identity_card" jdbcType="INTEGER" property="identityCard" />
+    <result column="visit" jdbcType="INTEGER" property="visit" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_time, export_falg, verify_flag, cat_color, cat_age, phone_number, wechat, 
+    master_age, master_sex, married, salary, address, housing, tenement, hometown, cotenant, 
+    cotenant_agreement, pets, experience, window, food, agree_protocol, identity_card, 
+    visit
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cat_applications
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cat_applications
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.spicis.adoption.domain.CatApplications">
+    insert into cat_applications (id, create_time, export_falg, 
+      verify_flag, cat_color, cat_age, 
+      phone_number, wechat, master_age, 
+      master_sex, married, salary, 
+      address, housing, tenement, 
+      hometown, cotenant, cotenant_agreement, 
+      pets, experience, window, 
+      food, agree_protocol, identity_card, 
+      visit)
+    values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{exportFalg,jdbcType=INTEGER}, 
+      #{verifyFlag,jdbcType=INTEGER}, #{catColor,jdbcType=VARCHAR}, #{catAge,jdbcType=INTEGER}, 
+      #{phoneNumber,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{masterAge,jdbcType=INTEGER}, 
+      #{masterSex,jdbcType=INTEGER}, #{married,jdbcType=INTEGER}, #{salary,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{housing,jdbcType=INTEGER}, #{tenement,jdbcType=INTEGER}, 
+      #{hometown,jdbcType=VARCHAR}, #{cotenant,jdbcType=INTEGER}, #{cotenantAgreement,jdbcType=INTEGER}, 
+      #{pets,jdbcType=VARCHAR}, #{experience,jdbcType=VARCHAR}, #{window,jdbcType=INTEGER}, 
+      #{food,jdbcType=VARCHAR}, #{agreeProtocol,jdbcType=INTEGER}, #{identityCard,jdbcType=INTEGER}, 
+      #{visit,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.spicis.adoption.domain.CatApplications">
+    insert into cat_applications
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="exportFalg != null">
+        export_falg,
+      </if>
+      <if test="verifyFlag != null">
+        verify_flag,
+      </if>
+      <if test="catColor != null">
+        cat_color,
+      </if>
+      <if test="catAge != null">
+        cat_age,
+      </if>
+      <if test="phoneNumber != null">
+        phone_number,
+      </if>
+      <if test="wechat != null">
+        wechat,
+      </if>
+      <if test="masterAge != null">
+        master_age,
+      </if>
+      <if test="masterSex != null">
+        master_sex,
+      </if>
+      <if test="married != null">
+        married,
+      </if>
+      <if test="salary != null">
+        salary,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="housing != null">
+        housing,
+      </if>
+      <if test="tenement != null">
+        tenement,
+      </if>
+      <if test="hometown != null">
+        hometown,
+      </if>
+      <if test="cotenant != null">
+        cotenant,
+      </if>
+      <if test="cotenantAgreement != null">
+        cotenant_agreement,
+      </if>
+      <if test="pets != null">
+        pets,
+      </if>
+      <if test="experience != null">
+        experience,
+      </if>
+      <if test="window != null">
+        window,
+      </if>
+      <if test="food != null">
+        food,
+      </if>
+      <if test="agreeProtocol != null">
+        agree_protocol,
+      </if>
+      <if test="identityCard != null">
+        identity_card,
+      </if>
+      <if test="visit != null">
+        visit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exportFalg != null">
+        #{exportFalg,jdbcType=INTEGER},
+      </if>
+      <if test="verifyFlag != null">
+        #{verifyFlag,jdbcType=INTEGER},
+      </if>
+      <if test="catColor != null">
+        #{catColor,jdbcType=VARCHAR},
+      </if>
+      <if test="catAge != null">
+        #{catAge,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNumber != null">
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="masterAge != null">
+        #{masterAge,jdbcType=INTEGER},
+      </if>
+      <if test="masterSex != null">
+        #{masterSex,jdbcType=INTEGER},
+      </if>
+      <if test="married != null">
+        #{married,jdbcType=INTEGER},
+      </if>
+      <if test="salary != null">
+        #{salary,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="housing != null">
+        #{housing,jdbcType=INTEGER},
+      </if>
+      <if test="tenement != null">
+        #{tenement,jdbcType=INTEGER},
+      </if>
+      <if test="hometown != null">
+        #{hometown,jdbcType=VARCHAR},
+      </if>
+      <if test="cotenant != null">
+        #{cotenant,jdbcType=INTEGER},
+      </if>
+      <if test="cotenantAgreement != null">
+        #{cotenantAgreement,jdbcType=INTEGER},
+      </if>
+      <if test="pets != null">
+        #{pets,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="window != null">
+        #{window,jdbcType=INTEGER},
+      </if>
+      <if test="food != null">
+        #{food,jdbcType=VARCHAR},
+      </if>
+      <if test="agreeProtocol != null">
+        #{agreeProtocol,jdbcType=INTEGER},
+      </if>
+      <if test="identityCard != null">
+        #{identityCard,jdbcType=INTEGER},
+      </if>
+      <if test="visit != null">
+        #{visit,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.spicis.adoption.domain.CatApplications">
+    update cat_applications
+    <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exportFalg != null">
+        export_falg = #{exportFalg,jdbcType=INTEGER},
+      </if>
+      <if test="verifyFlag != null">
+        verify_flag = #{verifyFlag,jdbcType=INTEGER},
+      </if>
+      <if test="catColor != null">
+        cat_color = #{catColor,jdbcType=VARCHAR},
+      </if>
+      <if test="catAge != null">
+        cat_age = #{catAge,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNumber != null">
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="masterAge != null">
+        master_age = #{masterAge,jdbcType=INTEGER},
+      </if>
+      <if test="masterSex != null">
+        master_sex = #{masterSex,jdbcType=INTEGER},
+      </if>
+      <if test="married != null">
+        married = #{married,jdbcType=INTEGER},
+      </if>
+      <if test="salary != null">
+        salary = #{salary,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="housing != null">
+        housing = #{housing,jdbcType=INTEGER},
+      </if>
+      <if test="tenement != null">
+        tenement = #{tenement,jdbcType=INTEGER},
+      </if>
+      <if test="hometown != null">
+        hometown = #{hometown,jdbcType=VARCHAR},
+      </if>
+      <if test="cotenant != null">
+        cotenant = #{cotenant,jdbcType=INTEGER},
+      </if>
+      <if test="cotenantAgreement != null">
+        cotenant_agreement = #{cotenantAgreement,jdbcType=INTEGER},
+      </if>
+      <if test="pets != null">
+        pets = #{pets,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        experience = #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="window != null">
+        window = #{window,jdbcType=INTEGER},
+      </if>
+      <if test="food != null">
+        food = #{food,jdbcType=VARCHAR},
+      </if>
+      <if test="agreeProtocol != null">
+        agree_protocol = #{agreeProtocol,jdbcType=INTEGER},
+      </if>
+      <if test="identityCard != null">
+        identity_card = #{identityCard,jdbcType=INTEGER},
+      </if>
+      <if test="visit != null">
+        visit = #{visit,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.spicis.adoption.domain.CatApplications">
+    update cat_applications
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      export_falg = #{exportFalg,jdbcType=INTEGER},
+      verify_flag = #{verifyFlag,jdbcType=INTEGER},
+      cat_color = #{catColor,jdbcType=VARCHAR},
+      cat_age = #{catAge,jdbcType=INTEGER},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      master_age = #{masterAge,jdbcType=INTEGER},
+      master_sex = #{masterSex,jdbcType=INTEGER},
+      married = #{married,jdbcType=INTEGER},
+      salary = #{salary,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      housing = #{housing,jdbcType=INTEGER},
+      tenement = #{tenement,jdbcType=INTEGER},
+      hometown = #{hometown,jdbcType=VARCHAR},
+      cotenant = #{cotenant,jdbcType=INTEGER},
+      cotenant_agreement = #{cotenantAgreement,jdbcType=INTEGER},
+      pets = #{pets,jdbcType=VARCHAR},
+      experience = #{experience,jdbcType=VARCHAR},
+      window = #{window,jdbcType=INTEGER},
+      food = #{food,jdbcType=VARCHAR},
+      agree_protocol = #{agreeProtocol,jdbcType=INTEGER},
+      identity_card = #{identityCard,jdbcType=INTEGER},
+      visit = #{visit,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
