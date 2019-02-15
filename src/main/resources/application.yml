@@ -11,6 +11,10 @@ spring:
     content-type: text/html
     mode: HTML5
 
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
 server:
   port: 8090
   address: 0.0.0.0
@@ -22,7 +26,7 @@ logging:
 
 #公共配置与profiles选择无关
 mybatis:
-  typeAliasesPackage: cn.spicis.adoption.entity
+  typeAliasesPackage: cn.spicis.adoption.domain
   mapperLocations: classpath:mapper/*.xml
 
 ---  #分隔线不能少
@@ -32,7 +36,7 @@ spring:
   profiles: dev
 
   datasource:
-    url: jdbc:mysql://localhost:3306/test       #数据库地址+数据库名字(自定义)
+    url: jdbc:mysql://localhost:3306/ADOPT      #数据库地址+数据库名字(自定义)
     username: root                              #帐号(自定义)
     password: Root_Password                              #密码(自定义)
     driver-class-name: com.mysql.cj.jdbc.Driver    #驱动

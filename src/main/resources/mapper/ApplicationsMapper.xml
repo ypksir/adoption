@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spicis.adoption.repository.ApplicationsMapper">
+  <resultMap id="BaseResultMap" type="cn.spicis.adoption.domain.Applications">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pet_type" jdbcType="INTEGER" property="petType" />
+    <result column="experience" jdbcType="INTEGER" property="experience" />
+    <result column="ex_pet_type" jdbcType="VARCHAR" property="exPetType" />
+    <result column="ex_cat_age" jdbcType="INTEGER" property="exCatAge" />
+    <result column="ex_dog_age" jdbcType="INTEGER" property="exDogAge" />
+    <result column="ex_years" jdbcType="INTEGER" property="exYears" />
+    <result column="ex_food" jdbcType="VARCHAR" property="exFood" />
+    <result column="ex_staple_food_brand" jdbcType="VARCHAR" property="exStapleFoodBrand" />
+    <result column="curr_pets" jdbcType="INTEGER" property="currPets" />
+    <result column="affordability_cat" jdbcType="INTEGER" property="affordabilityCat" />
+    <result column="affordability_dog" jdbcType="INTEGER" property="affordabilityDog" />
+    <result column="master_age" jdbcType="INTEGER" property="masterAge" />
+    <result column="master_sex" jdbcType="INTEGER" property="masterSex" />
+    <result column="master_marriage" jdbcType="INTEGER" property="masterMarriage" />
+    <result column="master_kids" jdbcType="INTEGER" property="masterKids" />
+    <result column="master_salary" jdbcType="INTEGER" property="masterSalary" />
+    <result column="master_job_type" jdbcType="VARCHAR" property="masterJobType" />
+    <result column="housing_situation" jdbcType="INTEGER" property="housingSituation" />
+    <result column="renting_situation" jdbcType="INTEGER" property="rentingSituation" />
+    <result column="future_plan" jdbcType="INTEGER" property="futurePlan" />
+    <result column="roommate" jdbcType="INTEGER" property="roommate" />
+    <result column="roomate_situation" jdbcType="INTEGER" property="roomateSituation" />
+    <result column="roommate_agreement" jdbcType="INTEGER" property="roommateAgreement" />
+    <result column="family_agreement" jdbcType="INTEGER" property="familyAgreement" />
+    <result column="cat_window_protection" jdbcType="INTEGER" property="catWindowProtection" />
+    <result column="set_cat_window_protection" jdbcType="INTEGER" property="setCatWindowProtection" />
+    <result column="dog_identification" jdbcType="INTEGER" property="dogIdentification" />
+    <result column="dog_string" jdbcType="INTEGER" property="dogString" />
+    <result column="master_protocol_agreement" jdbcType="INTEGER" property="masterProtocolAgreement" />
+    <result column="master_identification" jdbcType="INTEGER" property="masterIdentification" />
+    <result column="master_wechat" jdbcType="VARCHAR" property="masterWechat" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pet_type, experience, ex_pet_type, ex_cat_age, ex_dog_age, ex_years, ex_food, 
+    ex_staple_food_brand, curr_pets, affordability_cat, affordability_dog, master_age, 
+    master_sex, master_marriage, master_kids, master_salary, master_job_type, housing_situation, 
+    renting_situation, future_plan, roommate, roomate_situation, roommate_agreement, 
+    family_agreement, cat_window_protection, set_cat_window_protection, dog_identification, 
+    dog_string, master_protocol_agreement, master_identification, master_wechat, insert_time, 
+    status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from applications
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from applications
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.spicis.adoption.domain.Applications">
+    insert into applications (id, pet_type, experience, 
+      ex_pet_type, ex_cat_age, ex_dog_age, 
+      ex_years, ex_food, ex_staple_food_brand, 
+      curr_pets, affordability_cat, affordability_dog, 
+      master_age, master_sex, master_marriage, 
+      master_kids, master_salary, master_job_type, 
+      housing_situation, renting_situation, future_plan, 
+      roommate, roomate_situation, roommate_agreement, 
+      family_agreement, cat_window_protection, set_cat_window_protection, 
+      dog_identification, dog_string, master_protocol_agreement, 
+      master_identification, master_wechat, insert_time, 
+      status)
+    values (#{id,jdbcType=INTEGER}, #{petType,jdbcType=INTEGER}, #{experience,jdbcType=INTEGER}, 
+      #{exPetType,jdbcType=VARCHAR}, #{exCatAge,jdbcType=INTEGER}, #{exDogAge,jdbcType=INTEGER}, 
+      #{exYears,jdbcType=INTEGER}, #{exFood,jdbcType=VARCHAR}, #{exStapleFoodBrand,jdbcType=VARCHAR}, 
+      #{currPets,jdbcType=INTEGER}, #{affordabilityCat,jdbcType=INTEGER}, #{affordabilityDog,jdbcType=INTEGER}, 
+      #{masterAge,jdbcType=INTEGER}, #{masterSex,jdbcType=INTEGER}, #{masterMarriage,jdbcType=INTEGER}, 
+      #{masterKids,jdbcType=INTEGER}, #{masterSalary,jdbcType=INTEGER}, #{masterJobType,jdbcType=VARCHAR}, 
+      #{housingSituation,jdbcType=INTEGER}, #{rentingSituation,jdbcType=INTEGER}, #{futurePlan,jdbcType=INTEGER}, 
+      #{roommate,jdbcType=INTEGER}, #{roomateSituation,jdbcType=INTEGER}, #{roommateAgreement,jdbcType=INTEGER}, 
+      #{familyAgreement,jdbcType=INTEGER}, #{catWindowProtection,jdbcType=INTEGER}, #{setCatWindowProtection,jdbcType=INTEGER}, 
+      #{dogIdentification,jdbcType=INTEGER}, #{dogString,jdbcType=INTEGER}, #{masterProtocolAgreement,jdbcType=INTEGER}, 
+      #{masterIdentification,jdbcType=INTEGER}, #{masterWechat,jdbcType=VARCHAR}, #{insertTime,jdbcType=TIMESTAMP},
+      #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.spicis.adoption.domain.Applications">
+    insert into applications
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="petType != null">
+        pet_type,
+      </if>
+      <if test="experience != null">
+        experience,
+      </if>
+      <if test="exPetType != null">
+        ex_pet_type,
+      </if>
+      <if test="exCatAge != null">
+        ex_cat_age,
+      </if>
+      <if test="exDogAge != null">
+        ex_dog_age,
+      </if>
+      <if test="exYears != null">
+        ex_years,
+      </if>
+      <if test="exFood != null">
+        ex_food,
+      </if>
+      <if test="exStapleFoodBrand != null">
+        ex_staple_food_brand,
+      </if>
+      <if test="currPets != null">
+        curr_pets,
+      </if>
+      <if test="affordabilityCat != null">
+        affordability_cat,
+      </if>
+      <if test="affordabilityDog != null">
+        affordability_dog,
+      </if>
+      <if test="masterAge != null">
+        master_age,
+      </if>
+      <if test="masterSex != null">
+        master_sex,
+      </if>
+      <if test="masterMarriage != null">
+        master_marriage,
+      </if>
+      <if test="masterKids != null">
+        master_kids,
+      </if>
+      <if test="masterSalary != null">
+        master_salary,
+      </if>
+      <if test="masterJobType != null">
+        master_job_type,
+      </if>
+      <if test="housingSituation != null">
+        housing_situation,
+      </if>
+      <if test="rentingSituation != null">
+        renting_situation,
+      </if>
+      <if test="futurePlan != null">
+        future_plan,
+      </if>
+      <if test="roommate != null">
+        roommate,
+      </if>
+      <if test="roomateSituation != null">
+        roomate_situation,
+      </if>
+      <if test="roommateAgreement != null">
+        roommate_agreement,
+      </if>
+      <if test="familyAgreement != null">
+        family_agreement,
+      </if>
+      <if test="catWindowProtection != null">
+        cat_window_protection,
+      </if>
+      <if test="setCatWindowProtection != null">
+        set_cat_window_protection,
+      </if>
+      <if test="dogIdentification != null">
+        dog_identification,
+      </if>
+      <if test="dogString != null">
+        dog_string,
+      </if>
+      <if test="masterProtocolAgreement != null">
+        master_protocol_agreement,
+      </if>
+      <if test="masterIdentification != null">
+        master_identification,
+      </if>
+      <if test="masterWechat != null">
+        master_wechat,
+      </if>
+      <if test="insertTime != null">
+        insert_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="petType != null">
+        #{petType,jdbcType=INTEGER},
+      </if>
+      <if test="experience != null">
+        #{experience,jdbcType=INTEGER},
+      </if>
+      <if test="exPetType != null">
+        #{exPetType,jdbcType=VARCHAR},
+      </if>
+      <if test="exCatAge != null">
+        #{exCatAge,jdbcType=INTEGER},
+      </if>
+      <if test="exDogAge != null">
+        #{exDogAge,jdbcType=INTEGER},
+      </if>
+      <if test="exYears != null">
+        #{exYears,jdbcType=INTEGER},
+      </if>
+      <if test="exFood != null">
+        #{exFood,jdbcType=VARCHAR},
+      </if>
+      <if test="exStapleFoodBrand != null">
+        #{exStapleFoodBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="currPets != null">
+        #{currPets,jdbcType=INTEGER},
+      </if>
+      <if test="affordabilityCat != null">
+        #{affordabilityCat,jdbcType=INTEGER},
+      </if>
+      <if test="affordabilityDog != null">
+        #{affordabilityDog,jdbcType=INTEGER},
+      </if>
+      <if test="masterAge != null">
+        #{masterAge,jdbcType=INTEGER},
+      </if>
+      <if test="masterSex != null">
+        #{masterSex,jdbcType=INTEGER},
+      </if>
+      <if test="masterMarriage != null">
+        #{masterMarriage,jdbcType=INTEGER},
+      </if>
+      <if test="masterKids != null">
+        #{masterKids,jdbcType=INTEGER},
+      </if>
+      <if test="masterSalary != null">
+        #{masterSalary,jdbcType=INTEGER},
+      </if>
+      <if test="masterJobType != null">
+        #{masterJobType,jdbcType=VARCHAR},
+      </if>
+      <if test="housingSituation != null">
+        #{housingSituation,jdbcType=INTEGER},
+      </if>
+      <if test="rentingSituation != null">
+        #{rentingSituation,jdbcType=INTEGER},
+      </if>
+      <if test="futurePlan != null">
+        #{futurePlan,jdbcType=INTEGER},
+      </if>
+      <if test="roommate != null">
+        #{roommate,jdbcType=INTEGER},
+      </if>
+      <if test="roomateSituation != null">
+        #{roomateSituation,jdbcType=INTEGER},
+      </if>
+      <if test="roommateAgreement != null">
+        #{roommateAgreement,jdbcType=INTEGER},
+      </if>
+      <if test="familyAgreement != null">
+        #{familyAgreement,jdbcType=INTEGER},
+      </if>
+      <if test="catWindowProtection != null">
+        #{catWindowProtection,jdbcType=INTEGER},
+      </if>
+      <if test="setCatWindowProtection != null">
+        #{setCatWindowProtection,jdbcType=INTEGER},
+      </if>
+      <if test="dogIdentification != null">
+        #{dogIdentification,jdbcType=INTEGER},
+      </if>
+      <if test="dogString != null">
+        #{dogString,jdbcType=INTEGER},
+      </if>
+      <if test="masterProtocolAgreement != null">
+        #{masterProtocolAgreement,jdbcType=INTEGER},
+      </if>
+      <if test="masterIdentification != null">
+        #{masterIdentification,jdbcType=INTEGER},
+      </if>
+      <if test="masterWechat != null">
+        #{masterWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.spicis.adoption.domain.Applications">
+    update applications
+    <set>
+      <if test="petType != null">
+        pet_type = #{petType,jdbcType=INTEGER},
+      </if>
+      <if test="experience != null">
+        experience = #{experience,jdbcType=INTEGER},
+      </if>
+      <if test="exPetType != null">
+        ex_pet_type = #{exPetType,jdbcType=VARCHAR},
+      </if>
+      <if test="exCatAge != null">
+        ex_cat_age = #{exCatAge,jdbcType=INTEGER},
+      </if>
+      <if test="exDogAge != null">
+        ex_dog_age = #{exDogAge,jdbcType=INTEGER},
+      </if>
+      <if test="exYears != null">
+        ex_years = #{exYears,jdbcType=INTEGER},
+      </if>
+      <if test="exFood != null">
+        ex_food = #{exFood,jdbcType=VARCHAR},
+      </if>
+      <if test="exStapleFoodBrand != null">
+        ex_staple_food_brand = #{exStapleFoodBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="currPets != null">
+        curr_pets = #{currPets,jdbcType=INTEGER},
+      </if>
+      <if test="affordabilityCat != null">
+        affordability_cat = #{affordabilityCat,jdbcType=INTEGER},
+      </if>
+      <if test="affordabilityDog != null">
+        affordability_dog = #{affordabilityDog,jdbcType=INTEGER},
+      </if>
+      <if test="masterAge != null">
+        master_age = #{masterAge,jdbcType=INTEGER},
+      </if>
+      <if test="masterSex != null">
+        master_sex = #{masterSex,jdbcType=INTEGER},
+      </if>
+      <if test="masterMarriage != null">
+        master_marriage = #{masterMarriage,jdbcType=INTEGER},
+      </if>
+      <if test="masterKids != null">
+        master_kids = #{masterKids,jdbcType=INTEGER},
+      </if>
+      <if test="masterSalary != null">
+        master_salary = #{masterSalary,jdbcType=INTEGER},
+      </if>
+      <if test="masterJobType != null">
+        master_job_type = #{masterJobType,jdbcType=VARCHAR},
+      </if>
+      <if test="housingSituation != null">
+        housing_situation = #{housingSituation,jdbcType=INTEGER},
+      </if>
+      <if test="rentingSituation != null">
+        renting_situation = #{rentingSituation,jdbcType=INTEGER},
+      </if>
+      <if test="futurePlan != null">
+        future_plan = #{futurePlan,jdbcType=INTEGER},
+      </if>
+      <if test="roommate != null">
+        roommate = #{roommate,jdbcType=INTEGER},
+      </if>
+      <if test="roomateSituation != null">
+        roomate_situation = #{roomateSituation,jdbcType=INTEGER},
+      </if>
+      <if test="roommateAgreement != null">
+        roommate_agreement = #{roommateAgreement,jdbcType=INTEGER},
+      </if>
+      <if test="familyAgreement != null">
+        family_agreement = #{familyAgreement,jdbcType=INTEGER},
+      </if>
+      <if test="catWindowProtection != null">
+        cat_window_protection = #{catWindowProtection,jdbcType=INTEGER},
+      </if>
+      <if test="setCatWindowProtection != null">
+        set_cat_window_protection = #{setCatWindowProtection,jdbcType=INTEGER},
+      </if>
+      <if test="dogIdentification != null">
+        dog_identification = #{dogIdentification,jdbcType=INTEGER},
+      </if>
+      <if test="dogString != null">
+        dog_string = #{dogString,jdbcType=INTEGER},
+      </if>
+      <if test="masterProtocolAgreement != null">
+        master_protocol_agreement = #{masterProtocolAgreement,jdbcType=INTEGER},
+      </if>
+      <if test="masterIdentification != null">
+        master_identification = #{masterIdentification,jdbcType=INTEGER},
+      </if>
+      <if test="masterWechat != null">
+        master_wechat = #{masterWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.spicis.adoption.domain.Applications">
+    update applications
+    set pet_type = #{petType,jdbcType=INTEGER},
+      experience = #{experience,jdbcType=INTEGER},
+      ex_pet_type = #{exPetType,jdbcType=VARCHAR},
+      ex_cat_age = #{exCatAge,jdbcType=INTEGER},
+      ex_dog_age = #{exDogAge,jdbcType=INTEGER},
+      ex_years = #{exYears,jdbcType=INTEGER},
+      ex_food = #{exFood,jdbcType=VARCHAR},
+      ex_staple_food_brand = #{exStapleFoodBrand,jdbcType=VARCHAR},
+      curr_pets = #{currPets,jdbcType=INTEGER},
+      affordability_cat = #{affordabilityCat,jdbcType=INTEGER},
+      affordability_dog = #{affordabilityDog,jdbcType=INTEGER},
+      master_age = #{masterAge,jdbcType=INTEGER},
+      master_sex = #{masterSex,jdbcType=INTEGER},
+      master_marriage = #{masterMarriage,jdbcType=INTEGER},
+      master_kids = #{masterKids,jdbcType=INTEGER},
+      master_salary = #{masterSalary,jdbcType=INTEGER},
+      master_job_type = #{masterJobType,jdbcType=VARCHAR},
+      housing_situation = #{housingSituation,jdbcType=INTEGER},
+      renting_situation = #{rentingSituation,jdbcType=INTEGER},
+      future_plan = #{futurePlan,jdbcType=INTEGER},
+      roommate = #{roommate,jdbcType=INTEGER},
+      roomate_situation = #{roomateSituation,jdbcType=INTEGER},
+      roommate_agreement = #{roommateAgreement,jdbcType=INTEGER},
+      family_agreement = #{familyAgreement,jdbcType=INTEGER},
+      cat_window_protection = #{catWindowProtection,jdbcType=INTEGER},
+      set_cat_window_protection = #{setCatWindowProtection,jdbcType=INTEGER},
+      dog_identification = #{dogIdentification,jdbcType=INTEGER},
+      dog_string = #{dogString,jdbcType=INTEGER},
+      master_protocol_agreement = #{masterProtocolAgreement,jdbcType=INTEGER},
+      master_identification = #{masterIdentification,jdbcType=INTEGER},
+      master_wechat = #{masterWechat,jdbcType=VARCHAR},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

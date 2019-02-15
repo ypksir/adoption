@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>怪兽</title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="/js/jquery-1.9.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/bootstrap-fileinput/4.5.2/js/fileinput.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap-fileinput/4.5.2/css/fileinput.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="page-header">
+                <h1>create pet information</small></h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <form role="form" action="#" th:action="@{savePetInfo}" th:object="${petsInfos}" method="post" enctype="multipart/form-data">
+                <span>宠物的名字：</span>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="name_input" th:field="*{name}" minlength="1" required placeholder="">
+                </div>
+                <br>
+
+                <span>宠物的英文名：</span>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="name_en_input" th:field="*{nameEn}" minlength="1" required placeholder="">
+                </div>
+                <br>
+
+                <span>宠物的性别：</span>
+                <div class="form-group">
+                    <select class="form-control" th:field="*{sex}">
+                        <option value ="1">男孩</option>
+                        <option value ="2">女孩</option>
+                    </select>
+                </div>
+                <br>
+
+                <span>宠物的年龄：</span>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="age_input" th:field="*{age}" required placeholder="">
+                </div>
+                <br>
+
+                <span>宠物是否绝育：</span>
+                <div class="form-group">
+                    <select class="form-control" th:field="*{neuter}">
+                        <option value ="1">未绝育</option>
+                        <option value ="2">已绝育</option>
+                    </select>
+                </div>
+                <br>
+
+                <span>宠物是否接种疫苗：</span>
+                <div class="form-group">
+                    <select class="form-control" th:field="*{vaccination}">
+                        <option value ="1">未接种疫苗</option>
+                        <option value ="2">已接种疫苗</option>
+                    </select>
+                </div>
+                <br>
+
+                <span>宠物是否驱虫：</span>
+                <div class="form-group">
+                    <select class="form-control" th:field="*{helminthic}">
+                        <option value ="1">未驱虫</option>
+                        <option value ="2">已驱虫</option>
+                    </select>
+                </div>
+                <br>
+
+                <span>宠物的救助信息：</span>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="info_input" th:field="*{info}" required placeholder="">
+                </div>
+                <br>
+
+                <span>宠物照片：</span>
+                <!--<div class="form-group">-->
+                    <!--<div class="fileinput fileinput-new" data-provides="fileinput" id="photo_input">-->
+                        <!--<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">-->
+                            <!--<img src="${companyInfo.image}" alt="" />-->
+                        <!--</div>-->
+                        <!--<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>-->
+                        <!--<div>-->
+                            <!--<span class="btn default btn-file">-->
+                                <!--<span class="fileinput-new">选择图片</span>-->
+                                <!--<span class="fileinput-exists">更改</span>-->
+                                <!--<input type="file" name="uploadImage" id="uploadImage" />-->
+                            <!--</span>-->
+                            <!--<a href="#" class="btn default fileinput-exists" data-dismiss="fileinput">移除</a>-->
+                            <!--<span>请选择1M以内图片</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <input type="file" id="photo_input" name="photo_input[]" th:field="*{file}" multiple>
+                <br>
+
+                <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+    $(document).on('ready', function() {
+        $("#photo_input").fileinput({
+            showUpload: false,
+            maxFileCount: 9,
+            allowedFileExtensions: ["jpg", "jpeg", "gif", "png"],
+            maxFilePreviewSize: 1024,
+            uploadUrl: '/Users/suicanghai/Documents/study/IDEASpace/adoption/src/main/resources/static/image',
+        }).on('filepreupload', function(event, data, previewId, index) {     //上传中
+            var form = data.form, files = data.files, extra = data.extra,
+            response = data.response, reader = data.reader;
+            console.log('文件正在上传');
+        }).on("fileuploaded", function (event, data, previewId, index) {    //一个文件上传成功
+            console.log('文件上传成功！'+data.id);
+
+        }).on('fileerror', function(event, data, msg) {  //一个文件上传失败
+            console.log('文件上传失败！'+data.id);
+
+
+        });
+    });
+    <!--$("#uploadImage").fileupload({-->
+        <!--url : PATH + "/security/company/uploadFile",-->
+        <!--dataType : 'json',-->
+        <!--autoUpload : false,-->
+        <!--acceptFileTypes : /(gif|jpe?g|png)$/i,-->
+        <!--maxFileSize : 1000000, // 1 MB-->
+        <!--imageMaxWidth : 100,-->
+        <!--imageMaxHeight : 100,-->
+        <!--messages : {-->
+            <!--acceptFileTypes : '文件类型不匹配',-->
+            <!--maxFileSize : '文件过大',-->
+            <!--minFileSize : '文件过小'-->
+        <!--}-->
+    <!--}).on("fileuploadadd", function(e, data) {-->
+        <!--// 当文件添加上去时候调用-->
+        <!--$("#titleImageError").html("");-->
+        <!--data.submit()-->
+    <!--}).on("fileuploaddone", function(e, data) {-->
+        <!--// 上传完成时调用-->
+        <!--if (data.result.returnState == "ERROR") {-->
+            <!--alert("上传失败")-->
+            <!--return;-->
+        <!--}-->
+        <!--url = data.result.returnData.url;-->
+    <!--});-->
+
+    </script>
+
+
+
+</body>
+</html>
