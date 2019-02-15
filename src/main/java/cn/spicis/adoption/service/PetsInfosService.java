@@ -2,6 +2,8 @@ package cn.spicis.adoption.service;
 
 import cn.spicis.adoption.domain.PetsInfos;
 
+import java.util.List;
+
 public interface PetsInfosService {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface PetsInfosService {
     int updateByPrimaryKeySelective(PetsInfos record);
 
     int updateByPrimaryKey(PetsInfos record);
+
+    List<PetsInfos> getAll();
 }

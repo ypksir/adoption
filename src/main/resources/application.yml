@@ -29,6 +29,12 @@ mybatis:
   typeAliasesPackage: cn.spicis.adoption.domain
   mapperLocations: classpath:mapper/*.xml
 
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
 ---  #分隔线不能少
 
 #开发配置

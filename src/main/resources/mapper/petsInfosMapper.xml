@@ -24,6 +24,12 @@
     from pets_infos
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="getAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pets_infos
+    order by id
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from pets_infos
     where id = #{id,jdbcType=INTEGER}

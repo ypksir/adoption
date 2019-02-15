@@ -6,6 +6,7 @@ import cn.spicis.adoption.service.PetsInfosService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class PetsInfosServiceImpl implements PetsInfosService {
@@ -40,5 +41,10 @@ public class PetsInfosServiceImpl implements PetsInfosService {
     @Override
     public int updateByPrimaryKey(PetsInfos record) {
         return petsInfosMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<PetsInfos> getAll() {
+        return petsInfosMapper.getAll();
     }
 }
