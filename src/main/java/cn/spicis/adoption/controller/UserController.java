@@ -1,7 +1,5 @@
 package cn.spicis.adoption.controller;
 
-import cn.spicis.adoption.domain.User;
-import cn.spicis.adoption.service.UserService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,14 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/user")
 public class UserController {
 
-    @Resource
-    private UserService userService;
+//    @Resource
+//    private UserService userService;
+//
+//    @RequestMapping("/user")
+//    @ResponseBody
+//    public User getUser(HttpServletRequest request, Model model) {
+//        int userId = Integer.parseInt(request.getParameter("id"));
+//        User user = userService.selectByPrimaryKey(userId);
+//        return user;
+//    }
 
-    @RequestMapping("/user")
-    @ResponseBody
-    public User getUser(HttpServletRequest request, Model model) {
-        int userId = Integer.parseInt(request.getParameter("id"));
-        User user = userService.selectByPrimaryKey(userId);
-        return user;
-    }
 }

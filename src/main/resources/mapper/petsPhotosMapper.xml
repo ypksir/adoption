@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spicis.adoption.repository.PetsPhotosMapper">
+  <resultMap id="BaseResultMap" type="cn.spicis.adoption.domain.PetsPhotos">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pet_type" jdbcType="INTEGER" property="petType" />
+    <result column="pet_id" jdbcType="INTEGER" property="petId" />
+    <result column="photo_address" jdbcType="VARCHAR" property="photoAddress" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pet_type, pet_id, photo_address, insert_time, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pets_photos
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pets_photos
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.spicis.adoption.domain.PetsPhotos">
+    insert into pets_photos (id, pet_type, pet_id, 
+      photo_address, insert_time, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{petType,jdbcType=INTEGER}, #{petId,jdbcType=INTEGER}, 
+      #{photoAddress,jdbcType=VARCHAR}, #{insertTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertCodeBatch" parameterType="java.util.List">
+    insert into pets_photos (id, pet_type, pet_id,
+    photo_address, insert_time, status
+    )
+    values
+    <foreach collection ="list" item="petsPhotos" index="index" separator =",">
+    (#{petsPhotos.id,jdbcType=INTEGER}, #{petsPhotos.petType,jdbcType=INTEGER}, #{petsPhotos.petId,jdbcType=INTEGER},
+    #{petsPhotos.photoAddress,jdbcType=VARCHAR}, #{petsPhotos.insertTime,jdbcType=TIMESTAMP}, #{petsPhotos.status,jdbcType=INTEGER}
+    )
+    </foreach>
+  </insert>
+
+  <insert id="insertSelective" parameterType="cn.spicis.adoption.domain.PetsPhotos">
+    insert into pets_photos
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="petType != null">
+        pet_type,
+      </if>
+      <if test="petId != null">
+        pet_id,
+      </if>
+      <if test="photoAddress != null">
+        photo_address,
+      </if>
+      <if test="insertTime != null">
+        insert_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="petType != null">
+        #{petType,jdbcType=INTEGER},
+      </if>
+      <if test="petId != null">
+        #{petId,jdbcType=INTEGER},
+      </if>
+      <if test="photoAddress != null">
+        #{photoAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.spicis.adoption.domain.PetsPhotos">
+    update pets_photos
+    <set>
+      <if test="petType != null">
+        pet_type = #{petType,jdbcType=INTEGER},
+      </if>
+      <if test="petId != null">
+        pet_id = #{petId,jdbcType=INTEGER},
+      </if>
+      <if test="photoAddress != null">
+        photo_address = #{photoAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.spicis.adoption.domain.PetsPhotos">
+    update pets_photos
+    set pet_type = #{petType,jdbcType=INTEGER},
+      pet_id = #{petId,jdbcType=INTEGER},
+      photo_address = #{photoAddress,jdbcType=VARCHAR},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

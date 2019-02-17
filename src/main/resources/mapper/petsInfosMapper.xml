@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spicis.adoption.repository.PetsInfosMapper">
+  <resultMap id="BaseResultMap" type="cn.spicis.adoption.domain.PetsInfos">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="name_en" jdbcType="VARCHAR" property="nameEn" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="neuter" jdbcType="INTEGER" property="neuter" />
+    <result column="vaccination" jdbcType="INTEGER" property="vaccination" />
+    <result column="helminthic" jdbcType="INTEGER" property="helminthic" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, name_en, sex, age, neuter, vaccination, helminthic, info, insert_time, 
+    status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pets_infos
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pets_infos
+    order by id
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pets_infos
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.spicis.adoption.domain.PetsInfos" keyProperty="id" useGeneratedKeys="true">
+    insert into pets_infos (id, name, name_en, 
+      sex, age, neuter, vaccination, 
+      helminthic, info, insert_time, 
+      status)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{nameEn,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{age,jdbcType=VARCHAR}, #{neuter,jdbcType=INTEGER}, #{vaccination,jdbcType=INTEGER},
+      #{helminthic,jdbcType=INTEGER}, #{info,jdbcType=VARCHAR}, #{insertTime,jdbcType=TIMESTAMP},
+      #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.spicis.adoption.domain.PetsInfos">
+    insert into pets_infos
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="nameEn != null">
+        name_en,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="neuter != null">
+        neuter,
+      </if>
+      <if test="vaccination != null">
+        vaccination,
+      </if>
+      <if test="helminthic != null">
+        helminthic,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+      <if test="insertTime != null">
+        insert_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nameEn != null">
+        #{nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="neuter != null">
+        #{neuter,jdbcType=INTEGER},
+      </if>
+      <if test="vaccination != null">
+        #{vaccination,jdbcType=INTEGER},
+      </if>
+      <if test="helminthic != null">
+        #{helminthic,jdbcType=INTEGER},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.spicis.adoption.domain.PetsInfos">
+    update pets_infos
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nameEn != null">
+        name_en = #{nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="neuter != null">
+        neuter = #{neuter,jdbcType=INTEGER},
+      </if>
+      <if test="vaccination != null">
+        vaccination = #{vaccination,jdbcType=INTEGER},
+      </if>
+      <if test="helminthic != null">
+        helminthic = #{helminthic,jdbcType=INTEGER},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.spicis.adoption.domain.PetsInfos">
+    update pets_infos
+    set name = #{name,jdbcType=VARCHAR},
+      name_en = #{nameEn,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      age = #{age,jdbcType=VARCHAR},
+      neuter = #{neuter,jdbcType=INTEGER},
+      vaccination = #{vaccination,jdbcType=INTEGER},
+      helminthic = #{helminthic,jdbcType=INTEGER},
+      info = #{info,jdbcType=VARCHAR},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

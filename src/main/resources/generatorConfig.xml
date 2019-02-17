@@ -32,32 +32,37 @@
         </javaModelGenerator>
 
         <!-- sql mapper 映射配置文件 -->
-        <sqlMapGenerator targetPackage="cn.spicis.adoption.mapper"  targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
         <!-- mybatis3中的mapper接口 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.spicis.adoption.dao"  targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.spicis.adoption.repository"  targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
         <!-- 数据表进行生成操作 schema:相当于库名; tableName:表名; domainObjectName:对应的DO -->
-        <table schema="ADOPT" tableName="user" domainObjectName="User"
+        <table schema="ADOPT" tableName="users" domainObjectName="Users"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-        <table schema="ADOPT" tableName="dog_applications" domainObjectName="DogApplications"
+        <table schema="ADOPT" tableName="applications" domainObjectName="Applications"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-        <table schema="ADOPT" tableName="cat_applications" domainObjectName="CatApplications"
+        <table schema="ADOPT" tableName="application_photos" domainObjectName="ApplicationPhotos"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-        <table schema="ADOPT" tableName="photos" domainObjectName="Photos"
+        <table schema="ADOPT" tableName="pets_infos" domainObjectName="PetsInfos"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+        <table schema="ADOPT" tableName="pets_photos" domainObjectName="PetsPhotos"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

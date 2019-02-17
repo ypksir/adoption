@@ -1,17 +1,9 @@
 package cn.spicis.adoption.service;
 
-import cn.spicis.adoption.domain.User;
+import cn.spicis.adoption.domain.Users;
 
 public interface UserService {
-    int deleteByPrimaryKey(Integer userId);
+    Users selectByUsername(String userName);
 
-    int insert(User record);
-
-    int insertSelective(User record);
-
-    User selectByPrimaryKey(Integer userId);
-
-    int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);
+    Users selectByid(int userId);
 }

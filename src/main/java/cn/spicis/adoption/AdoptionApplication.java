@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan
 @EnableAutoConfiguration
 @SpringBootApplication
-@MapperScan("cn.spicis.adoption.dao")
+@MapperScan("cn.spicis.adoption.repository")
 public class AdoptionApplication {
 
 	public static void main(String[] args) {
